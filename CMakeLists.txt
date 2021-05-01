@@ -9,4 +9,6 @@ add_executable(tarea
     main.cpp
     ecuaciongaussbase.cpp
     ecuaciongaussbase.h
+    ecuaciones4x4gauss.cpp
+    ecuaciones4x4gauss.h
 )
