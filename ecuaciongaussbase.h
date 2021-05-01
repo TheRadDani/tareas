@@ -1,5 +1,5 @@
 /**
- * @author
+ * @author Daniel Ferreto
  * @file ecuaciongaussbase.h
  * @date 1 de mayo del 2021
  * @brief ecuación base para formar sistemas de ecuaciones

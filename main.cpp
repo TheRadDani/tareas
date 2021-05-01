@@ -1,9 +1,12 @@
+#include "ecuaciones4x4gauss.h"
+
 #include <iostream>
 
 using namespace std;
 
 int main()
 {
+    Ecuaciones4x4Gauss sistema;
     return 0;
 }
 
