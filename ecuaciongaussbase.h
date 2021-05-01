@@ -11,6 +11,8 @@
 /** cantidad de coeficientes de la ecuación */
 #define NCOEFICIENTES 5
 
+class Ecuaciones4x4Gauss;
+
 /** ecuación base para formar sistemas de ecuaciones */
 class EcuacionGaussBase
 {
@@ -46,6 +48,8 @@ public:
 
     /** intercambia coeficientes con otra ecuación */
     void swap(EcuacionGaussBase &other);
+
+    void check(int cIndex, Ecuaciones4x4Gauss *S, int eIndex);
 private:
     double m_coeficientes[NCOEFICIENTES]; //!< array de coeficientes (tamaño 5)
 };

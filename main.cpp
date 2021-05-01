@@ -15,8 +15,16 @@ int main()
     S[2] = EcuacionGaussBase(3.0, 2.0, -4.0, 3.0, -25.0);
     S[3] = EcuacionGaussBase(1.0, 1.0, 1.0, 1.0, -2.0);
 
+    // imprime ecuaciones iniciales
+    cout << "ecuaciones iniciales:" << endl;
     S.show();
+
+    // ordena las ecuaciones de manera conveniente
     S.sort();
+
+    // imprime ecuaciones ya ordenadas
+    cout << "ecuaciones ordenadas:" << endl;
+    S.show();
 
     return 0;
 }
