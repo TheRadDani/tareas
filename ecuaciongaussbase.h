@@ -15,8 +15,16 @@
 class EcuacionGaussBase
 {
 public:
-    /** constructor */
+    /** constructor por default */
     explicit EcuacionGaussBase();
+
+    /** constructor */
+    explicit EcuacionGaussBase(double a0, //!< coeficiente de variable 1
+                                 double a1, //!< coeficiente de variable 2
+                                 double a2, //!< coeficiente de variable 3
+                                 double a3, //!< coeficiente de variable 4
+                                 double a4 //!< termino independiente
+    );
 
     /** destructor */
     virtual ~EcuacionGaussBase();
