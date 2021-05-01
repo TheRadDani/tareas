@@ -1,5 +1,7 @@
 #include "ecuaciones4x4gauss.h"
 
+#include <vector>
+#include <algorithm>
 #include <iostream>
 
 using namespace std;
@@ -32,31 +34,46 @@ void Ecuaciones4x4Gauss::show() const
 
 bool Ecuaciones4x4Gauss::sort()
 {
-    // contador de intentos
-    int counter = 0;
+    int counter = 0; // contador de intentos
+    int zeroCounter = 0; // contador de ceros
+    static const int limit = 1000; // límite de intentos
+    vector<int> aIndices; // indices de coeficientes significativos (basado en la cantidad de ecuaciones)
 
-    // límite de intentos
-    const int limit = 1000;
-
-    // ciclo para intentar mantener coherencia entre los coeficientes de las ecuaciones
-    while (m_sistema[0][0] == 0.0
-           && m_sistema[1][1] == 0.0
-           && m_sistema[2][2] == 0.0
-           && m_sistema[3][3] == 0.0
-           && counter <= limit)
+    // obtención de índices significativos
+    for (int i = 0; i < NECUACIONES; ++i)
     {
-        m_sistema[0].check(0, this, 0); // verifica a00
-        m_sistema[1].check(1, this, 1); // verifica a11
-        m_sistema[2].check(2, this, 2); // verifica a22
-        m_sistema[3].check(3, this, 3); // verifica a33
-        ++counter; // incrementamos contador de intentos
+        aIndices.push_back(i);
     }
 
-    // si todos los coeficientes indicados son diferente de cero, todo salió bien
-    return m_sistema[0][0] != 0.0
-           && m_sistema[1][1] != 0.0
-           && m_sistema[2][2] != 0.0
-           && m_sistema[3][3] != 0.0;
+    // ciclo para intentar evitar ceros en los coeficientes significativos de las ecuaciones
+    while (counter <= limit)
+    {
+        // ¿cuántos ceros se pudieron encontrar en las posiciones significativas de las ecuaciones en total?
+        zeroCounter = 0;
+        std::for_each(aIndices.begin(), aIndices.end(), [&](int indice)
+        {
+            if (m_sistema[indice][indice] == 0.0)
+            {
+                ++zeroCounter;
+            }
+        });
+
+        // no encontramos ceros en posiciones significativas, hemos terminado el ciclo
+        if (zeroCounter == 0)
+        {
+            break;
+        }
+        else
+        {
+            // hacemos intento por intercambiar ecuaciones evitando tener cero en la posición indicada
+            for (int i = 0; i < NECUACIONES; ++i)
+            {
+                m_sistema[i].check(i, this, i);
+            }
+            ++counter; // un intento más se ha hecho
+        }
+    }
+    return zeroCounter == 0;
 }
 
 void Ecuaciones4x4Gauss::swap(int ecuIndexA, int ecuIndexB)

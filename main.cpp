@@ -20,7 +20,7 @@ int main()
     S.show();
 
     // ordena las ecuaciones de manera conveniente
-    S.sort();
+    cout << "sort: " << std::boolalpha << S.sort() << endl;
 
     // imprime ecuaciones ya ordenadas
     cout << "ecuaciones ordenadas:" << endl;
