@@ -1,5 +1,10 @@
 #include "ecuaciongaussbase.h"
 
+#include <iostream>
+#include <cstdio>
+
+using namespace std;
+
 EcuacionGaussBase::EcuacionGaussBase()
 {
     for (int i = 0; i < NCOEFICIENTES; ++i)
@@ -31,6 +36,23 @@ double EcuacionGaussBase::operator[](int indice) const
     else
     {
         return 0.0;
+    }
+}
+
+void EcuacionGaussBase::show() const
+{
+    if (m_coeficientes[0] > 0)
+    {
+        printf(" ");
+    }
+    printf("%4.3f", m_coeficientes[0]);
+    for (int i = 1; i < NCOEFICIENTES; ++i)
+    {
+        if (m_coeficientes[i] > 0)
+        {
+            printf(" ");
+        }
+        printf(" %4.3f", m_coeficientes[i]);
     }
 }
 

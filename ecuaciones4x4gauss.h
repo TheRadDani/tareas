@@ -28,6 +28,9 @@ public:
 
     /** operator para acceder a ecuación */
     const EcuacionGaussBase &operator[](int indice) const;
+
+    /** imprime en pantalla el sistema de ecuaciones */
+    void show() const;
 private:
     EcuacionGaussBase m_sistema[NECUACIONES]; //!< sistema de 4x4
 };

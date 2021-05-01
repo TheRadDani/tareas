@@ -34,6 +34,8 @@ public:
 
     /** operator para acceder a posición (su referencia en memoria) */
     double &operator[](int indice);
+
+    void show() const;
 private:
     double m_coeficientes[NCOEFICIENTES]; //!< array de coeficientes (tamaño 5)
 };
