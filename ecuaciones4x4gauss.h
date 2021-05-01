@@ -5,7 +5,6 @@
  * @brief sistema de ecuaciones de 4x4 por el método de Gauss-Jordan
  */
 
-
 #ifndef ECUACIONES4X4GAUSS_H
 #define ECUACIONES4X4GAUSS_H
 
@@ -18,7 +17,7 @@ class Ecuaciones4x4Gauss
 {
 public:
     /** constructor */
-    explicit Ecuaciones4x4Gauss();
+    Ecuaciones4x4Gauss();
 
     /** destructor */
     virtual ~Ecuaciones4x4Gauss();
@@ -31,7 +30,16 @@ public:
 
     /** imprime en pantalla el sistema de ecuaciones */
     void show() const;
+
+    /**
+     * ordena las ecuaciones de forma que:
+     * a00, a11, a22, a33 sean diferentes de 0.0
+     */
+    void sort();
 private:
+    /** intercambia dos ecuaciones mediante su índice */
+    void swap(int ecuIndexA, int ecuIndexB);
+
     EcuacionGaussBase m_sistema[NECUACIONES]; //!< sistema de 4x4
 };
 

@@ -30,6 +30,19 @@ void Ecuaciones4x4Gauss::show() const
     }
 }
 
+void Ecuaciones4x4Gauss::sort()
+{
+    m_sistema[0][0];
+    m_sistema[1][1];
+    m_sistema[2][2];
+    m_sistema[3][3];
+}
+
+void Ecuaciones4x4Gauss::swap(int ecuIndexA, int ecuIndexB)
+{
+    m_sistema[ecuIndexA].swap(m_sistema[ecuIndexB]);
+}
+
 const EcuacionGaussBase &Ecuaciones4x4Gauss::operator[](int indice) const
 {
     return m_sistema[indice];

@@ -5,6 +5,19 @@
 
 using namespace std;
 
+EcuacionGaussBase::EcuacionGaussBase(const EcuacionGaussBase &other)
+{
+    *this = other;
+}
+
+void EcuacionGaussBase::operator=(const EcuacionGaussBase &other)
+{
+    for (int i = 0; i < NCOEFICIENTES; ++i)
+    {
+        m_coeficientes[i] = other.m_coeficientes[i];
+    }
+}
+
 EcuacionGaussBase::EcuacionGaussBase()
 {
     for (int i = 0; i < NCOEFICIENTES; ++i)
@@ -54,6 +67,13 @@ void EcuacionGaussBase::show() const
         }
         printf(" %4.3f", m_coeficientes[i]);
     }
+}
+
+void EcuacionGaussBase::swap(EcuacionGaussBase &other)
+{
+    EcuacionGaussBase copy = *this;
+    *this = other;
+    other = copy;
 }
 
 double &EcuacionGaussBase::operator[](int indice)

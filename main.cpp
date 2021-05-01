@@ -16,6 +16,7 @@ int main()
     S[3] = EcuacionGaussBase(1.0, 1.0, 1.0, 1.0, -2.0);
 
     S.show();
+    S.sort();
 
     return 0;
 }
