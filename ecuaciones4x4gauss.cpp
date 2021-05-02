@@ -75,6 +75,14 @@ bool Ecuaciones4x4Gauss::sort(int limit /*<-- límite de intetos, por default = 
     return zeroCounter == 0;
 }
 
+void Ecuaciones4x4Gauss::solve()
+{
+    for (int i = 0; i < NECUACIONES; ++i)
+    {
+        solve(i);
+    }
+}
+
 void Ecuaciones4x4Gauss::swap(int ecuIndexA, int ecuIndexB)
 {
     m_sistema[ecuIndexA].swap(m_sistema[ecuIndexB]);
@@ -85,7 +93,37 @@ const EcuacionGaussBase &Ecuaciones4x4Gauss::operator[](int indice) const
     return m_sistema[indice];
 }
 
-void Ecuaciones4x4Gauss::solve()
+void Ecuaciones4x4Gauss::solve(int i)
 {
-    // todo...
+    // deben dividir cada coeficiente de toda la ecuación "i"
+    // por el valor a[i,i] de manera que el término a[i,i] sea = 1
+    for (int c = 0; c < NCOEFICIENTES; ++c)
+    {
+        m_sistema[i][c] /= m_sistema[i][i];
+    }
+
+    // deben recorrer todas las ecuaciones desde k=0 hasta k=3
+    // evitando k=i
+    for (int k = 0; k < NECUACIONES; ++k)
+    {
+        if (k != i)
+        {
+            for (int c = 0; c < NCOEFICIENTES; ++c)
+            {
+                // multiplicar cada término de la ecuación "i"
+                // por -a[k,i] de manera que a[i,i] es el negativo de
+                // a[k,i]
+                m_sistema[i][c] *= -m_sistema[k][i];
+
+                // sumar cada término de la ecuación "i" a cada término
+                // de la ecuación "k"
+                m_sistema[i][c] += m_sistema[k][c];
+            }
+        }
+    }
+
+    for (int c = 0; c < NCOEFICIENTES; ++c)
+    {
+        m_sistema[i][c] /= m_sistema[i][i];
+    }
 }

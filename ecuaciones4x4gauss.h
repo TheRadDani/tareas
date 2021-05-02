@@ -10,6 +10,7 @@
 
 #include "ecuaciongaussbase.h"
 
+/** cantidad de ecuaciones del sistema de ecuaciones */
 #define NECUACIONES 4
 
 /** sistema de ecuaciones de 4x4 por el método de Gauss-Jordan */
@@ -40,6 +41,7 @@ public:
 
     /** soluciona sistema de ecuaciones */
     void solve();
+    void solve(int i /*!< ecuación en proceso (índice) */);
 private:
     /** intercambia dos ecuaciones mediante su índice */
     void swap(int ecuIndexA, int ecuIndexB);
