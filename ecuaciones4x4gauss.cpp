@@ -1,8 +1,8 @@
 #include "ecuaciones4x4gauss.h"
 
 #include <vector>
-#include <algorithm>
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
@@ -32,11 +32,10 @@ void Ecuaciones4x4Gauss::show() const
     }
 }
 
-bool Ecuaciones4x4Gauss::sort()
+bool Ecuaciones4x4Gauss::sort(int limit /*<-- límite de intetos, por default = 1000 */)
 {
     int counter = 0; // contador de intentos
     int zeroCounter = 0; // contador de ceros
-    static const int limit = 1000; // límite de intentos
     vector<int> aIndices; // indices de coeficientes significativos (basado en la cantidad de ecuaciones)
 
     // obtención de índices significativos
@@ -84,4 +83,9 @@ void Ecuaciones4x4Gauss::swap(int ecuIndexA, int ecuIndexB)
 const EcuacionGaussBase &Ecuaciones4x4Gauss::operator[](int indice) const
 {
     return m_sistema[indice];
+}
+
+void Ecuaciones4x4Gauss::solve()
+{
+    // todo...
 }

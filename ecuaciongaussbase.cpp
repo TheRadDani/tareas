@@ -2,9 +2,9 @@
 #include "ecuaciones4x4gauss.h"
 
 #include <vector>
-#include <algorithm>
-#include <iostream>
 #include <cstdio>
+#include <iostream>
+#include <algorithm>
 
 using namespace std;
 

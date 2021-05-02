@@ -33,9 +33,13 @@ public:
 
     /**
      * ordena las ecuaciones de forma que:
-     * a00, a11, a22, a33 sean diferentes de 0.0
+     * a00, a11, a22, a33 sean diferentes de 0.0,
+     * y hay que definir un límite de intentos
      */
-    bool sort();
+    bool sort(int limit = 1000);
+
+    /** soluciona sistema de ecuaciones */
+    void solve();
 private:
     /** intercambia dos ecuaciones mediante su índice */
     void swap(int ecuIndexA, int ecuIndexB);
