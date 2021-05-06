@@ -10,10 +10,10 @@ int main()
     Ecuaciones4x4Gauss S;
 
     // asignamos ecuaciones
-    S[0] = EcuacionGaussBase(2.0, 2.0, -2.0, 1.0, -12.0);
-    S[1] = EcuacionGaussBase(5.0, 1.0, 3.0, -1.0, 16.0);
-    S[2] = EcuacionGaussBase(3.0, 2.0, -4.0, 3.0, -25.0);
-    S[3] = EcuacionGaussBase(1.0, 1.0, 1.0, 1.0, -2.0);
+    S[0] = EcuacionGaussBase(1.0, -2.0, 2.0, -3.0, 15.0);
+    S[1] = EcuacionGaussBase(3.0, 4.0, -1.0, 1.0, -6.0);
+    S[2] = EcuacionGaussBase(2.0, -3.0, 2.0, -1.0, 17.0);
+    S[3] = EcuacionGaussBase(1.0, 1.0, -3.0, -2.0, -7.0);
 
     // imprime ecuaciones iniciales
     cout << "ecuaciones iniciales:" << endl;

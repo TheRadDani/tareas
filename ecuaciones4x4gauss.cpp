@@ -77,9 +77,29 @@ bool Ecuaciones4x4Gauss::sort(int limit /*<-- límite de intetos, por default = 
 
 void Ecuaciones4x4Gauss::solve()
 {
-    for (int i = 0; i < NECUACIONES; ++i)
+    double b;
+    int n = NECUACIONES, i, j, k;
+    for (j = 0; j < n; ++j)
     {
-        solve(i);
+        for (i = 0; i < n; ++i)
+        {
+            if (i != j)
+            {
+                b = m_sistema[i][j]/m_sistema[j][j];
+                for (k = 0; k < n+1; ++k)
+                {
+                    m_sistema[i][k] = m_sistema[i][k] - b * m_sistema[j][k];
+                }
+            }
+        }
+    }
+    for (int ecuacion = 0; ecuacion < NECUACIONES; ++ecuacion)
+    {
+        double b = m_sistema[ecuacion][ecuacion];
+        for (int coeficiente = 0; coeficiente < NCOEFICIENTES; ++coeficiente)
+        {
+            m_sistema[ecuacion][coeficiente] /= b;
+        }
     }
 }
 
@@ -91,39 +111,4 @@ void Ecuaciones4x4Gauss::swap(int ecuIndexA, int ecuIndexB)
 const EcuacionGaussBase &Ecuaciones4x4Gauss::operator[](int indice) const
 {
     return m_sistema[indice];
-}
-
-void Ecuaciones4x4Gauss::solve(int i)
-{
-    // deben dividir cada coeficiente de toda la ecuación "i"
-    // por el valor a[i,i] de manera que el término a[i,i] sea = 1
-    for (int c = 0; c < NCOEFICIENTES; ++c)
-    {
-        m_sistema[i][c] /= m_sistema[i][i];
-    }
-
-    // deben recorrer todas las ecuaciones desde k=0 hasta k=3
-    // evitando k=i
-    for (int k = 0; k < NECUACIONES; ++k)
-    {
-        if (k != i)
-        {
-            for (int c = 0; c < NCOEFICIENTES; ++c)
-            {
-                // multiplicar cada término de la ecuación "i"
-                // por -a[k,i] de manera que a[i,i] es el negativo de
-                // a[k,i]
-                m_sistema[i][c] *= -m_sistema[k][i];
-
-                // sumar cada término de la ecuación "i" a cada término
-                // de la ecuación "k"
-                m_sistema[i][c] += m_sistema[k][c];
-            }
-        }
-    }
-
-    for (int c = 0; c < NCOEFICIENTES; ++c)
-    {
-        m_sistema[i][c] /= m_sistema[i][i];
-    }
 }

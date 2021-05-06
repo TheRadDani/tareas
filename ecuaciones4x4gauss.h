@@ -41,7 +41,6 @@ public:
 
     /** soluciona sistema de ecuaciones */
     void solve();
-    void solve(int i /*!< ecuación en proceso (índice) */);
 private:
     /** intercambia dos ecuaciones mediante su índice */
     void swap(int ecuIndexA, int ecuIndexB);
